@@ -1,0 +1,614 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.3">
+    
+    
+      
+        <title>Home - ボーンのデータ構造</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.1655a90d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kosugi+Maru:300,400,400i,700%7CUbuntu+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Kosugi Maru";--md-code-font-family:"Ubuntu Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../stylesheets/styles.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#3bone-editbone-posebone" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href=".." title="ボーンのデータ構造" class="md-header__button md-logo" aria-label="ボーンのデータ構造">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ボーンのデータ構造
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="クリア" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="タブ" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+
+
+  <li class="md-tabs__item">
+    <a href="./" class="md-tabs__link md-tabs__link--active">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3%E4%B8%80%E8%A6%A7/" class="md-tabs__link">
+      Bone, EditBone, PoseBone のプロパティ一覧
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="ボーンのデータ構造" class="md-nav__button md-logo" aria-label="ボーンのデータ構造">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    ボーンのデータ構造
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Home
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Home
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bone" class="md-nav__link">
+    Bone
+  </a>
+  
+    <nav class="md-nav" aria-label="Bone">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bone_1" class="md-nav__link">
+    ◇ 他のデータ構造と比べたときの Bone の特徴
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bone_2" class="md-nav__link">
+    ◇ Bone の利用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#edit-bone" class="md-nav__link">
+    Edit Bone
+  </a>
+  
+    <nav class="md-nav" aria-label="Edit Bone">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#editbone" class="md-nav__link">
+    ◇ 他のデータ構造と比べたときの EditBone の特徴
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#editbone_1" class="md-nav__link">
+    ◇ EditBone の利用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pose-bone" class="md-nav__link">
+    Pose Bone
+  </a>
+  
+    <nav class="md-nav" aria-label="Pose Bone">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#posebone" class="md-nav__link">
+    ◇ 他のデータ構造と比べたときの PoseBone の特徴
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#posebone_1" class="md-nav__link">
+    ◇ PoseBoneの利用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3%E4%B8%80%E8%A6%A7/" class="md-nav__link">
+        Bone, EditBone, PoseBone のプロパティ一覧
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <div class="admonition info">
+<p class="admonition-title">このページについて</p>
+<ul>
+<li>以下は、公式 API Document の <a href="https://docs.blender.org/api/current/info_gotcha.html#edit-bones-pose-bones-bone-bones">Gotcha's</a> をベースに自分が調べた内容を整理したもので、正しさは保証しない</li>
+<li>スクリプトによるボーンの操作のついての情報が欲しい場合は、<a href="https://dskjal.com/blender/bone-script.html">dskjalさんの解説</a>などを参照するほうが良い</li>
+<li>本文中のコードは、<code>bpy.context.object</code>がアーマチュアオブジェクトである状態を前提としている</li>
+</ul>
+</div>
+<p><br></p>
+<h1 id="3bone-editbone-posebone">ボーンの3種類のデータ構造：Bone, EditBone, PoseBone</h1>
+<hr />
+<p>アーマチュアボーンには、<strong>Bone</strong>, <strong>EditBone</strong>, <strong>PoseBone</strong>という3つの異なるデータ構造がある。<br></p>
+<p>簡単に言えば、それぞれオブジェクトモード、編集モード、ポーズモードで扱うボーンのデータである。各モードでのプロパティエディタのボーンタブは、(基本的には)それぞれ対応するデータ構造の中身を示している<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> 。</p>
+<p>この3つのデータ構造は、保有するプロパティや変更できるプロパティにそれぞれ違いがある。</p>
+<p>例えば、ポーズモードで利用する PoseBone は、<code>select</code> プロパティを持たない。<br>
+そのため、スクリプト内で選択状態を変更するときは、 対象ボーンの PoseBone ではなく Bone にアクセスし、その<code>select</code>プロパティを変更することが必要になる。<br><br></p>
+<p>Bone, EditBone, PoseBone の違いを大雑把にまとめると、以下のようになる。</p>
+<p><img alt="データ構造の関係" src="https://user-images.githubusercontent.com/49331838/109383130-c0c8c280-7927-11eb-8e24-42007a7102dc.png" /></p>
+<p>したがって、データ構造と使用場面は、基本的には以下のように対応する。</p>
+<ul>
+<li>ボーン自体のデータを変更したいとき　→　<strong>EditBone</strong></li>
+<li>ポーズのデータを変更したいとき　→　<strong>PoseBone</strong></li>
+<li>モードを切り替えずにボーンのデータを変更したいとき　→　<strong>Bone</strong><br><br></li>
+</ul>
+<h2 id="bone"><a href="https://docs.blender.org/api/current/bpy.types.Bone.html">Bone</a></h2>
+<hr />
+<p><strong>Bone</strong> はボーンのデータ構造で1つであり、オブジェクトモードとポーズモードで利用される。</p>
+<details class="note"><summary>編集モードでの Bone</summary><p>Bone データは編集モードでもアクセス可能で、プロパティを変更することもできる。しかし</p>
+<ul>
+<li>Bone で変更できるプロパティは、EditBone でも変更できる</li>
+<li>編集モード中の Bone での変更は EditBone には反映されずない</li>
+<li>変更した Bone のプロパティは、編集モードを抜ける際に EditBone の値で上書きされる (=もとに戻る)</li>
+</ul>
+<p>という性質があるため、わざわざ Bone データにアクセスする必要は無いと思われる</p>
+</details>
+<p>context を利用して単一の Bone にアクセスする場合、一般的な手法としては3つの手法がある。</p>
+<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><code><span style="color: #8f5902; font-style: italic"># active_bone を使う ( オブジェクトモード or ポーズモード )</span>
+<span style="color: #000000">bone</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">bpy</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">context</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">active_bone</span>
+
+<span style="color: #8f5902; font-style: italic"># アーマチュアデータの bones プロパティの、active プロパティを使う</span>
+<span style="color: #000000">bone</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">bpy</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">context</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">active_object</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">data</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">bones</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">active</span>
+
+<span style="color: #8f5902; font-style: italic"># アーマチュアデータの bones プロパティの中身を、ボーン名を指定して取り出す</span>
+<span style="color: #000000">bone</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">bpy</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">context</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">active_object</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">data</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">bones</span><span style="color: #000000; font-weight: bold">[</span><span style="color: #4e9a06">&quot;name&quot;</span><span style="color: #000000; font-weight: bold">]</span>
+</code></pre></div>
+<br></p>
+<h3 id="bone_1">◇ 他のデータ構造と比べたときの Bone の特徴</h3>
+<hr />
+<p>対 EditBone</p>
+<ul>
+<li>同じ点：ボーンそのものに関する基本的な情報を持っている</li>
+<li>違う点：どんなモードでもアクセスできる　しかし、変更可能なプロパティは少ない<br><br></li>
+</ul>
+<p>対 PoseBone</p>
+<ul>
+<li>同じ点：どんなモードでもアクセスできる</li>
+<li>違う点：ボーンそれ自体に関するデータを持つ　しかし、ポーズに関するデータを持たない<br><br></li>
+</ul>
+<h3 id="bone_2">◇ Bone の利用</h3>
+<hr />
+<p>「いつでもアクセスできる + ボーン自体を操作できる」という Bone の性質は、特にポーズモードにおいて役立つ。</p>
+<p>実際、ポーズモードの ボーンタブで行ういくつかの操作は、アクティブなボーンの PoseBone ではなく Bone のプロパティを変更している。例えば、「変形」の有効化/無効化、アーマチュアのレイヤーの切り替えなどのツールチップを見ると、<code class="highlight"><span style="color: #000000">pose</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">bones</span><span style="color: #000000; font-weight: bold">[</span><span style="color: #4e9a06">&quot;~~&quot;</span><span style="color: #000000; font-weight: bold">]</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">xx</span></code>ではなく、<code class="highlight"><span style="color: #000000">armatures</span><span style="color: #000000; font-weight: bold">[</span><span style="color: #4e9a06">&quot;~~&quot;</span><span style="color: #000000; font-weight: bold">]</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">bones</span><span style="color: #000000; font-weight: bold">[</span><span style="color: #4e9a06">&quot;~~&quot;</span><span style="color: #000000; font-weight: bold">]</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">xx</span></code>にアクセスしていることがわかる。<br><br></p>
+<h2 id="edit-bone"><a href="https://docs.blender.org/api/current/bpy.types.EditBone.html">Edit Bone</a></h2>
+<hr />
+<p><strong>EditBone</strong> はボーンのデータ構造で1つであり、編集モードで利用される。<br></p>
+<p>EditBone は編集モードへの切り替えが行われた際に Bone のデータを利用して準備され、編集モードから出るとアクセスできなくなる<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>。</p>
+<details class="warning"><summary>編集モードへの / からの切り替えを行ったときは、参照を取得し直す</summary><p><a href="https://docs.blender.org/api/current/info_gotcha.html#edit-mode-memory-access">Gotcha's</a> で説明されているように、モードの切り替えが起こると、データの re-allocate が行われるため、参照先が変わってしまう。</p>
+<p>これはコンソールでも、以下のようにすれば確認できる。</p>
+<ol>
+<li>オブジェクトモードで <code class="highlight"><span style="color: #000000">b</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">C</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">active_bone</span></code> してから<code>b</code>を実行し、参照先を確認する</li>
+<li>編集モードに切り替え、何もせずにオブジェクトモードに戻す</li>
+<li><code>b</code>の参照先を確認すると、別のボーンになっている場合がある (ときには存在しないものになる)</li>
+</ol>
+<p>なので、編集モードを出たあともボーンを操作する場合は、name などで再取得したほうが良い</p>
+</details>
+<p>context を利用して単一の EditBone にアクセスする場合、一般的な手法としては3つの手法がある。</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><code><span style="color: #8f5902; font-style: italic"># active_bone を使う ( 編集モードのみ )</span>
+<span style="color: #000000">edit_bone</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">bpy</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">context</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">active_bone</span>
+
+<span style="color: #8f5902; font-style: italic"># アーマチュアデータの edit_bones プロパティの、active プロパティを使う</span>
+<span style="color: #000000">edit_bone</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">bpy</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">context</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">active_object</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">data</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">edit_bones</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">active</span>
+
+<span style="color: #8f5902; font-style: italic"># アーマチュアデータの edit_bones プロパティの中身を、ボーン名を指定して取り出す</span>
+<span style="color: #000000">edit_bone</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">bpy</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">context</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">active_object</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">data</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">bones</span><span style="color: #000000; font-weight: bold">[</span><span style="color: #4e9a06">&quot;name&quot;</span><span style="color: #000000; font-weight: bold">]</span>
+
+<span style="color: #8f5902; font-style: italic"># 編集モード以外では、アーマチュアデータの`edit_bones`プロパティの要素は空</span>
+<span style="color: #204a87">len</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">bpy</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">context</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">active_object</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">data</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">edit_bones</span><span style="color: #000000; font-weight: bold">)</span> <span style="color: #ce5c00; font-weight: bold">==</span> <span style="color: #0000cf; font-weight: bold">0</span>  <span style="color: #8f5902; font-style: italic"># True</span>
+</code></pre></div>
+<p>なお、アーマチュアデータの <code>edit_bones</code>プロパティは、ボーンの追加や削除にも利用される</p>
+<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><code><span style="color: #8f5902; font-style: italic"># ボーンの追加：他のモードでは RuntimeError</span>
+<span style="color: #000000">new_bone</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">bpy</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">context</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">active_object</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">data</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">edit_bones</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">new</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">name</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;new_bone&quot;</span><span style="color: #000000; font-weight: bold">)</span>
+</code></pre></div>
+<br></p>
+<h3 id="editbone">◇ 他のデータ構造と比べたときの EditBone の特徴</h3>
+<hr />
+<p>対 Bone</p>
+<ul>
+<li>同じ点：ボーンそのものに関する基本的な情報を持っている</li>
+<li>違う点：変更可能なプロパティが多い　しかし、編集モード以外ではアクセスできない<br><br></li>
+</ul>
+<p>対 PoseBone</p>
+<ul>
+<li>同じ点：特に無し<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup></li>
+<li>違う点：変更できるデータの対象 + 利用できるモード<br><br></li>
+</ul>
+<h3 id="editbone_1">◇ EditBone の利用</h3>
+<hr />
+<p>EditBone のみで変更できる重要なプロパティには、以下のようなものがある</p>
+<ul>
+<li><code>head</code>/ <code>tail</code>：ボーンそのものの位置や長さの設定</li>
+<li><code>roll</code>：ボーンのロールの変更</li>
+<li><code>parent</code>：親子関係の変更</li>
+<li><code>use_connect</code>：親ボーンとの接続の有無<br><br></li>
+</ul>
+<h2 id="pose-bone"><a href="https://docs.blender.org/api/current/bpy.types.Pose.html">Pose Bone</a></h2>
+<hr />
+<p><strong>PoseBone</strong> はボーンのデータ構造で1つであり、ポーズモードで利用される。<br></p>
+<p>PoseBone は(おそらく) Bone に基づいて作成/更新され<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>、ポーズモード以外でもアクセスしてプロパティを変更することができる。</p>
+<p>EditBone と異なり PoseBone はどのモードでも存在しているため、別モードでの変更もポーズモードに反映される。</p>
+<p>context を利用して単一の PoseBone にアクセスする場合、一般的な手法としては2つの手法がある。
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><code><span style="color: #8f5902; font-style: italic"># active_pose_bone を使う　ポーズモード以外では None </span>
+<span style="color: #000000">poset_bone</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">bpy</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">context</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">active_pose_bone</span>
+
+<span style="color: #8f5902; font-style: italic"># オブジェクトのポーズデータの pose_bones プロパティの中身を、ボーン名を指定して取り出す</span>
+<span style="color: #000000">pose_bone</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">bpy</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">context</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">active_object</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">pose</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">bones</span><span style="color: #000000; font-weight: bold">[</span><span style="color: #4e9a06">&quot;name&quot;</span><span style="color: #000000; font-weight: bold">]</span>
+</code></pre></div>
+<br></p>
+<details class="abstract" open="open"><summary>PoseBone とは実際にはボーンではなく、単なるポーズ</summary><p>Bone や EditBone は、アーマチュアデータ (<code>object.data</code>) の下には格納される。<br>
+しかし以下のアウトライナーが示すように、PoseBone はポーズデータ (<code>object.pose</code>) の下に格納される。<br>
+<img alt="bone_outliner" src="https://user-images.githubusercontent.com/49331838/109387214-6ccbd700-7943-11eb-88df-7e790bf95c72.png" /></p>
+<p>つまり、厳密に言えば PoseBone はボーンではなく、<code>bpy.types.Object</code>に格納されたアーマチュアの<strong>各部分の状態</strong><sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>のデータである。</p>
+</details>
+<p>そのため、PoseBone 自体は 選択/非選択 や アクティブ といった性質を持たない。<br>
+これらの性質は同一ボーンの Bone データがそのまま反映されることになるので、選択状態などの変更は、PoseBone の<code>bone</code>プロパティを利用して、Bone にアクセスして行うことが必要。</p>
+<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><code><span style="color: #8f5902; font-style: italic"># 一部の PoseBone を選択状態にして処理を実行したいとき</span>
+<span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">pb</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000; font-weight: bold">[</span><span style="color: #000000">PoseBone</span> <span style="color: #000000">のリスト</span><span style="color: #000000; font-weight: bold">]:</span>
+    <span style="color: #000000">pb</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">bone</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">select</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #204a87; font-weight: bold">True</span>       <span style="color: #8f5902; font-style: italic"># Bone にアクセスしてその選択状態を変更</span>
+<span style="color: #000000">bpy</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">ops</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">pose</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">xxx_yyy</span><span style="color: #000000; font-weight: bold">()</span>          <span style="color: #8f5902; font-style: italic">#なにかの処理</span>
+</code></pre></div>
+<br></p>
+<h3 id="posebone">◇ 他のデータ構造と比べたときの PoseBone の特徴</h3>
+<hr />
+<p>対 Bone</p>
+<ul>
+<li>同じ点：どんなモードでもアクセスできる</li>
+<li>違う点：ポーズに関するデータを持つ　しかし、ボーンそれ自体に関するデータを持たない<br><br></li>
+</ul>
+<p>対 EditBone</p>
+<ul>
+<li>同じ点：特に無し</li>
+<li>違う点：変更できるデータの対象 + 利用できるモード<br><br></li>
+</ul>
+<h3 id="posebone_1">◇ PoseBoneの利用</h3>
+<hr />
+<p>PoseBone のみで変更できるプロパティは多く、以下のようなものが該当する。</p>
+<ul>
+<li>位置・回転・拡縮などの、アニメーション可能な変形の情報</li>
+<li>IKの制限に関する設定</li>
+<li>カスタムシェイプの設定</li>
+<li>ボーングループの設定</li>
+<li>ボーンの持つポーズコンストレイントへのアクセス<br><br></li>
+</ul>
+<p>なお、ベンディボーンに関する設定には、以下の2種類が存在する。</p>
+<ol>
+<li>ボーン側 (Bone/EditBone) にのみ存在し、ポーズ側はその値を利用する設定</li>
+<li>ボーン側とポーズ側 (PoseBone) の両方に存在し、それぞれ別の値を保持する設定</li>
+</ol>
+<p>後者のタイプの設定は、プロパティエディタのボーンタブにおいて、ポーズモードでもオブジェクトモードでも<strong>常にポーズ側の値が表示されてボーン側の値は見えない</strong>という性質<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup>を持つので注意する。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>ツールチップを見ればわかるが、実際は別のデータ構造のプロパティも並んでいたりする&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>編集モードで作成した参照は、少なくともコンソールでは編集モードを出たあとも利用できる。ただし EditBone のみが変更可能なプロパティを変更しようとすると Blender がクラッシュする&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>この2つが同じように変更できるものは、おそらくボーンの名前だけ。もしかしたら行列関係で何かあるかもしれない。&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>実際は編集モードを出る際に Bone か EditBone の状態に基づいて作成されるようで、編集モードにいる限りどれだけボーンを追加/削除しても<code>pose.bones</code>には反映されない。編集モードで削除したボーンの<code>PoseBone.bone</code>から Bone へのアクセスはできる。プロパティの変更を試すと、エラーは出ないものの値は変更されない。&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>原文のstateをそのまま訳してしまったが、それこそ"姿勢"とするべきかも&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p>編集モードに切り替えてタブがEditBoneのデータ基準になると、表示される&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="フッター">
+      
+      
+        <a href="../%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3%E4%B8%80%E8%A6%A7/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                次
+              </span>
+              Bone, EditBone, PoseBone のプロパティ一覧
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["toc.integrate", "navigation.tabs", "navigation.tabs.sticky"], "translations": {"clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\u3000\u3001\u3002\uff0c\uff0e]+", "search.placeholder": "\u691c\u7d22", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044"}, "search": "../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ca5457b8.min.js"></script>
+      
+    
+  </body>
+</html>
