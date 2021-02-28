@@ -1,0 +1,2 @@
+# blender_bone_data_properties
+ボーンの3種類のデータ構造と、そのプロパティについて
